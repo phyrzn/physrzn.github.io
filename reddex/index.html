@@ -10,29 +10,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f8f9fa;
         }
         .search-container {
             text-align: center;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
         }
         .logo {
-            font-size: 72px;
+            font-size: 48px;
             font-weight: bold;
             margin-bottom: 20px;
-            color: #FF4500; /* Reddit's orange color */
+            color: #FF4500;
         }
         .search-box {
-            width: 500px;
+            width: 100%;
+            max-width: 500px;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #dfe1e5;
             border-radius: 24px;
             outline: none;
+            box-sizing: border-box;
         }
         .button-container {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         .search-button, .lucky-button {
             padding: 10px 20px;
@@ -42,7 +50,7 @@
             border-radius: 4px;
             color: #3c4043;
             cursor: pointer;
-            margin: 0 5px;
+            margin: 5px;
         }
         .search-button:hover, .lucky-button:hover {
             box-shadow: 0 1px 1px rgba(0,0,0,.1);
@@ -57,6 +65,17 @@
             font-size: 14px;
             color: #5f6368;
         }
+        @media (max-width: 600px) {
+            .logo {
+                font-size: 36px;
+            }
+            .search-box {
+                font-size: 14px;
+            }
+            .search-button, .lucky-button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -69,18 +88,15 @@
             <button class="lucky-button" onclick="feelingLucky()">I'm Feeling Lucky</button>
         </div>
     </div>
-
     <script>
         function search() {
             const query = document.getElementById('searchInput').value;
             const url = `https://www.reddit.com/search/?q=${encodeURIComponent(query)}`;
             window.location.href = url;
         }
-
         function feelingLucky() {
             window.location.href = 'https://www.reddit.com/r/random';
         }
-
         document.getElementById('searchInput').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
                 search();
